@@ -4,16 +4,19 @@ describe "Student" do
 
   let(:josh) {Student.new("Josh", "9th")}
 
-  before(:each) do
-    DB[:conn].execute("DROP TABLE IF EXISTS students")
-    sql =  <<-SQL
+  before(:each) do |example|
+    unless example.metadata[:skip_before]
+
+      DB[:conn].execute("DROP TABLE IF EXISTS students")
+      sql =  <<-SQL
       CREATE TABLE IF NOT EXISTS students (
         id INTEGER PRIMARY KEY,
         name TEXT,
         grade TEXT
-        )
-    SQL
-    DB[:conn].execute(sql)
+      )
+      SQL
+      DB[:conn].execute(sql)
+    end
   end
 
   describe "attributes" do
@@ -25,11 +28,12 @@ describe "Student" do
 
     it 'has an id that defaults to `nil` on initialization' do
       expect(josh.id).to eq(nil)
+      DB[:conn].execute("DROP TABLE students")
     end
   end
 
   describe "#create_table" do
-    it 'creates the students table in the database' do
+    it 'creates the students table in the database', :skip_before do
       Student.create_table
       table_check_sql = "SELECT tbl_name FROM sqlite_master WHERE type='table' AND tbl_name='students';"
       expect(DB[:conn].execute(table_check_sql)[0]).to eq(['students'])
