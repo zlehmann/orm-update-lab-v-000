@@ -48,7 +48,7 @@ class Student
 
   def self.new_from_db(array)
     binding.pry
-    new_student = Student.new(array[0][0], array[0][1], array[0][2])
+    new_student = Student.new(array[0], array[1], array[2])
   end
 
   def self.find_by_name(name)
