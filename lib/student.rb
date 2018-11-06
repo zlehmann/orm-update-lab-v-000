@@ -47,7 +47,6 @@ class Student
   end
 
   def self.new_from_db(array)
-    #binding.pry
     new_student = Student.new(array[0], array[1], array[2])
   end
 
@@ -59,7 +58,6 @@ class Student
     SQL
 
     new_student = new_from_db(DB[:conn].execute(sql, name)[0])
-    binding.pry
   end
 
   def update
