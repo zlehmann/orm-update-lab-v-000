@@ -49,6 +49,13 @@ class Student
     new_student = Student.new(array[0][0], array[0][1], array[0][2])
   end
 
+  def self.find_by_name(name)
+    sql = <<-SQL 
+      SELECT *
+      FROM students
+      WHERE name = ?
+    SQL 
+
   def update
     sql = <<-SQL
       UPDATE students
