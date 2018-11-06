@@ -1,4 +1,5 @@
 require_relative "../config/environment.rb"
+require 'pry'
 
 class Student
   attr_accessor :name, :grade
@@ -46,6 +47,7 @@ class Student
   end
 
   def self.new_from_db(array)
+    binding.pry
     new_student = Student.new(array[0][0], array[0][1], array[0][2])
   end
 
