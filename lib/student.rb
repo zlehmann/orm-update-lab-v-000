@@ -59,6 +59,7 @@ class Student
     SQL
 
     new_student = self.new_from_db(DB[:conn].execute(sql, name))
+    binding.pry
   end
 
   def update
@@ -68,7 +69,6 @@ class Student
       WHERE id = ?
     SQL
     DB[:conn].execute(sql, self.name, self.grade, self.id)
-    self.id 
   end
 
 
