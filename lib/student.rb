@@ -8,14 +8,19 @@ class Student
   end
 
   def self.create_table
-    sql = <<-SQL 
+    sql = <<-SQL
       CREATE TABLE students (
         id INTEGER PRIMARY KEY,
         name TEXT,
         grade INTEGER
       )
-    SQL 
+    SQL
+    DB[:conn].execute(sql)
+  end 
+
+  def self.drop_table
     
+
 
 
 end
