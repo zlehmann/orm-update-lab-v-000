@@ -47,7 +47,7 @@ class Student
   end
 
   def self.new_from_db(array)
-    binding.pry
+    #binding.pry
     new_student = Student.new(array[0], array[1], array[2])
   end
 
