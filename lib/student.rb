@@ -41,12 +41,14 @@ class Student
     Student.new(array[0][0], array[0][1], array[0][2])
   end
 
-  def update 
+  def update
     sql = <<-SQL
-      SELECT * 
-      FROM students
+      UPDATE students
+      SET  name = ?, grade = ?
       WHERE id = ?
-    SQL 
-    DB[:conn].execute(sql, self.id)
+    SQL
+    DB[:conn].execute(sql, self.name, self.grade, self.id)
+  end 
+    
 
 end
